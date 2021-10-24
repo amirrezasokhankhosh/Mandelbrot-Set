@@ -15,16 +15,31 @@ def translate(value, leftMin, leftMax, rightMin, rightMax):
     return rightMin + (valueScaled * rightSpan)
 
 
-WIDTH, HEIGHT = 400, 400
+WIDTH, HEIGHT = 600, 600
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Mandelbrot Set")
 
-print(float())
-
-# for i in range(WIDTH):
-#     for j in range(HEIGHT):
-#
+for i in range(WIDTH):
+    for j in range(HEIGHT):
+        a = translate(i, 0, WIDTH - 1, -2, 2)
+        b = translate(j, 0, HEIGHT - 1, -2, 2)
+        ca, cb= a, b
+        z = 0
+        
+        for n in range(100):
+            try:
+                aa = (a * a) - (b * b)
+            except :
+                print(n, a, b)
+            bb = 2 * a * b
+            a = aa + ca
+            b = bb + cb
+            if a + b > 20:
+                break
+        
+        bright = translate(n, 0, 99, 0, 255)
+        screen.set_at((i, j), (bright, bright, bright))
 
 
 while True:
